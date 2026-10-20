@@ -1,0 +1,235 @@
+/* Boutique T-shirts Philoreilles — complément de style.css (ne le remplace pas).
+   Toutes les règles sont préfixées .tee-, .shop ou .shop__ pour ne rien altérer ailleurs.
+   Polices, couleurs de texte et en-têtes/pied de page sont hérités du site existant. */
+
+:root {
+  --tee-ink: #101A2B;      /* bleu très sombre */
+  --tee-mist: #E8E8E4;     /* gris très clair */
+  --tee-rose: #E9A0B5;     /* rose Philoreilles */
+  --tee-surface: #FBFBF9;
+  --tee-line: rgba(16, 26, 43, .22);
+  --tee-error: #8A1C3A;
+  --tee-radius: .45rem;
+}
+
+[hidden] { display: none !important; }
+
+/* Mise en boîte prévisible, quelle que soit la règle globale du site */
+.shop, .shop *, .tee-cartbox, .tee-cartbox *, .tee-notice, .tee-buy, .tee-buy * { box-sizing: border-box; }
+
+/* Texte réservé aux lecteurs d’écran (les champs masqués restent focalisables) */
+.tee-sr {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- Section d’accueil (index.html) ---------- */
+
+.tee-buy {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 1rem 1.75rem;
+  margin: 1.5rem 0;
+}
+.tee-buy .tee-price { margin: 0; }
+.tee-price strong, .tee-now strong {
+  display: block;
+  font-size: 2rem; line-height: 1.1; font-weight: 700;
+}
+.tee-price span, .tee-now span { display: block; max-width: 24rem; font-size: .95rem; }
+
+/* ---------- Badge du panier (menu et lien « Voir le panier ») ---------- */
+
+.tee-badge {
+  display: inline-block;
+  min-width: 1.45em; margin-left: .45em; padding: 0 .4em;
+  border-radius: 999px;
+  background: var(--tee-rose); color: var(--tee-ink);
+  font-size: .78em; font-weight: 700; line-height: 1.45; text-align: center;
+  vertical-align: middle;
+}
+.nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: .35em; }
+
+/* ---------- Page boutique ---------- */
+
+.tee-topline { margin: 0 0 1.25rem; text-align: right; }
+.tee-cartlink { color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: .25em; }
+
+.shop {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+}
+@media (min-width: 861px) {
+  .shop__gallery { position: sticky; top: 6rem; }
+}
+@media (max-width: 860px) {
+  .shop { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Galerie */
+.tee-stage {
+  position: relative;
+  margin: 0;
+  aspect-ratio: var(--ratio, 1 / 1);
+  background: var(--tee-mist);
+  border-radius: var(--tee-radius);
+  overflow: hidden;
+}
+.tee-stage img {
+  display: block; width: 100%; height: 100%;
+  object-fit: contain;
+  transition: opacity .2s ease;
+}
+.tee-stage.is-loading img { opacity: .5; }
+.tee-stage.is-error img { visibility: hidden; }
+.tee-fallback {
+  position: absolute; inset: 0; margin: 0; padding: 1.5rem;
+  display: none; place-items: center; text-align: center;
+  color: var(--tee-ink);
+}
+.tee-stage.is-error .tee-fallback { display: grid; }
+
+.tee-thumbs { display: flex; gap: .75rem; margin-top: .75rem; }
+.tee-thumb {
+  width: 5.75rem; padding: 0;
+  border: 2px solid var(--tee-line); border-radius: var(--tee-radius);
+  background: var(--tee-mist); color: var(--tee-ink);
+  font: inherit; text-align: center; cursor: pointer; overflow: hidden;
+}
+.tee-thumb img { display: block; width: 100%; aspect-ratio: 1; object-fit: contain; }
+.tee-thumb span { display: block; padding: .3rem .2rem .4rem; font-size: .9rem; }
+.tee-thumb[aria-pressed="true"] {
+  border-color: var(--tee-ink);
+  box-shadow: 0 0 0 3px var(--tee-rose);
+  font-weight: 700;
+}
+
+/* Panneau produit */
+.tee-title { margin: 0 0 .5rem; }
+.tee-now { margin: 0 0 1rem; }
+.tee-desc { margin: 0; max-width: 34rem; }
+
+.tee-field { min-width: 0; margin: 1.6rem 0 0; padding: 0; border: 0; }
+.tee-field legend { margin: 0 0 .65rem; padding: 0; font-weight: 700; }
+.tee-opt { position: relative; }
+
+/* États communs des choix (radios masqués + libellés cliquables) */
+.tee-model, .tee-swatch, .tee-size {
+  border: 2px solid var(--tee-line);
+  border-radius: var(--tee-radius);
+  background: var(--tee-surface); color: var(--tee-ink);
+  cursor: pointer;
+  transition: border-color .15s ease, background-color .15s ease;
+}
+.tee-opt input:checked + label { border-color: var(--tee-ink); box-shadow: 0 0 0 3px var(--tee-rose); }
+.tee-opt input:focus-visible + label { outline: 3px solid var(--tee-ink); outline-offset: 3px; }
+.tee-opt label:hover { border-color: var(--tee-ink); }
+
+/* Modèles */
+.tee-models { display: grid; grid-template-columns: minmax(0, 1fr); gap: .85rem; }
+.tee-model {
+  display: grid; grid-template-columns: 4.5rem minmax(0, 1fr);
+  align-items: center; gap: .8rem;
+  padding: .55rem;
+}
+.tee-model img { display: block; width: 100%; aspect-ratio: 1; object-fit: contain; background: var(--tee-mist); border-radius: .3rem; }
+.tee-model b { display: block; }
+.tee-model small { display: block; margin-top: .15rem; font-size: .88rem; }
+
+/* Couleurs */
+.tee-swatches { display: flex; flex-wrap: wrap; gap: .75rem; }
+.tee-swatch { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem 1rem .45rem .5rem; border-radius: 999px; }
+.tee-dot { width: 1.7rem; height: 1.7rem; border-radius: 50%; border: 1px solid rgba(16, 26, 43, .5); background: var(--dot); }
+.tee-dot--bleu { --dot: #101A2B; }
+.tee-dot--gris { --dot: #E8E8E4; }
+.tee-dot--rose { --dot: #E9A0B5; }
+
+/* Tailles */
+.tee-sizes { display: flex; flex-wrap: wrap; gap: .6rem; }
+.tee-size { display: grid; place-items: center; min-width: 3.4rem; min-height: 3rem; padding: 0 .6rem; font-weight: 700; }
+.tee-opt input:checked + .tee-size { background: var(--tee-ink); color: #fff; }
+
+.tee-error { margin: .75rem 0 0; color: var(--tee-error); font-weight: 700; }
+
+.tee-actions { margin-top: 1.75rem; }
+button.btn { font-family: inherit; }
+:where(button.btn) { cursor: pointer; }
+
+.tee-status { min-height: 1.5em; margin: 1rem 0 0; }
+.tee-status a { color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: .2em; }
+
+.tee-notice {
+  margin: 1.25rem 0 0; padding: .8rem 1rem; max-width: 46rem;
+  border-left: 4px solid var(--tee-ink); background: rgba(16, 26, 43, .06);
+  font-size: .95rem;
+}
+
+/* ---------- Panier ---------- */
+
+#t-panier:focus { outline: none; }
+#t-panier:focus-visible { outline: 3px solid var(--tee-ink); outline-offset: 4px; }
+
+.tee-empty { margin: 0; max-width: 40rem; }
+
+.tee-cartbox { max-width: 56rem; }
+.tee-cart { list-style: none; margin: 0; padding: 0; }
+.tee-line {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr) auto auto;
+  grid-template-areas: "img info qty total" "img info remove remove";
+  align-items: center; gap: .35rem 1.25rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--tee-line);
+}
+.tee-line:first-child { border-top: 1px solid var(--tee-line); }
+.tee-line__img { grid-area: img; display: block; width: 100%; aspect-ratio: 1; object-fit: contain; background: var(--tee-mist); border-radius: .3rem; }
+.tee-line__info { grid-area: info; }
+.tee-line__info p { margin: 0; }
+.tee-line__name { font-weight: 700; }
+.tee-line__meta, .tee-line__unit { font-size: .95rem; }
+.tee-qty { grid-area: qty; display: inline-flex; align-items: center; gap: .15rem; }
+.tee-qty button {
+  width: 2.5rem; height: 2.5rem; padding: 0;
+  border: 2px solid var(--tee-ink); border-radius: var(--tee-radius);
+  background: var(--tee-surface); color: var(--tee-ink);
+  font: inherit; font-size: 1.25rem; line-height: 1; cursor: pointer;
+}
+.tee-qty button:hover:not(:disabled) { background: var(--tee-ink); color: #fff; }
+.tee-qty button:disabled { opacity: .4; cursor: not-allowed; }
+.tee-qty__n { min-width: 2.25rem; text-align: center; font-weight: 700; }
+.tee-line__total { grid-area: total; margin: 0; min-width: 5.5rem; text-align: right; font-weight: 700; }
+.tee-line .tee-linkbtn { grid-area: remove; justify-self: end; }
+
+.tee-linkbtn {
+  padding: .35rem 0; border: 0; background: none; color: inherit;
+  font: inherit; text-decoration: underline; text-underline-offset: .25em; cursor: pointer;
+}
+.tee-linkbtn:hover { text-decoration-thickness: 2px; }
+
+.tee-summary { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem 2rem; padding-top: 1.25rem; }
+.tee-sub { display: flex; align-items: baseline; gap: 1.5rem; margin: 0; font-size: 1.2rem; }
+.tee-sub strong { font-size: 1.7rem; }
+.tee-sub small { font-size: .9rem; }
+
+@media (max-width: 640px) {
+  .tee-line {
+    grid-template-columns: 4.25rem minmax(0, 1fr);
+    grid-template-areas: "img info" "qty total" "remove remove";
+  }
+  .tee-line__total { text-align: right; }
+  .tee-line .tee-linkbtn { justify-self: start; }
+}
+
+/* Focus clavier visible partout dans la boutique */
+.shop button:focus-visible, .tee-cartbox button:focus-visible, .tee-cartlink:focus-visible, .tee-status a:focus-visible {
+  outline: 3px solid var(--tee-ink); outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tee-stage img, .tee-model, .tee-swatch, .tee-size { transition: none; }
+}
