@@ -1,0 +1,23 @@
+/* Boutique souvenirs — complète tshirts.css (stage, cartes de choix, panier, badge, boutons)
+   avec les seuls composants propres à cette page. */
+
+.tee-cats, .tee-cats *, .tee-prods, .tee-prods * { box-sizing: border-box; }
+
+/* Choix de la catégorie, en tête de page */
+.tee-field--lead { margin-top: 0; margin-bottom: clamp(1.75rem, 4vw, 2.5rem); }
+.tee-cats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; }
+@media (max-width: 560px) { .tee-cats { grid-template-columns: minmax(0, 1fr); } }
+.tee-cats .tee-model { grid-template-columns: 5.5rem minmax(0, 1fr); }
+.tee-cats .tee-model b { font-size: 1.1rem; }
+
+/* Liste des produits de la catégorie choisie */
+.tee-prods { display: grid; grid-template-columns: minmax(0, 1fr); gap: .85rem; }
+.tee-prod { grid-template-columns: 4.5rem minmax(0, 1fr) auto; }
+.tee-prod__price { align-self: start; font-weight: 700; white-space: nowrap; }
+@media (max-width: 420px) {
+  .tee-prod { grid-template-columns: 3.75rem minmax(0, 1fr); }
+  .tee-prod__price { grid-column: 2; }
+}
+
+/* Les photos de souvenirs sont montrées en entier, sur le même fond gris que les T-shirts */
+.tee-stage img { object-position: center; }

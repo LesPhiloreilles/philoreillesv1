@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boutique souvenirs — Philoreilles</title>
+<meta name="description" content="La boutique souvenirs Philoreilles : cinq cartes postales à 3,99 € et trois porte-clés à 7,99 €. Boutique de démonstration, sans paiement réel.">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="tshirts.css">
+<link rel="stylesheet" href="souvenirs.css">
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<div class="top"><div class="top__in">
+<a class="brand" href="index.html" aria-label="Philoreilles, retour à l’accueil"><img src="images/logo.jpg" alt="Drapeau officiel du mouvement des Philoreilles"><span><b>PHILOREILLES</b><small>M. Phili Philipi</small></span></a>
+<button class="burger" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+<nav class="nav" id="nav" aria-label="Navigation principale"><ul><li><a href="index.html#candidat">Le candidat</a></li><li><a href="index.html#societe">La nouvelle société</a></li><li><a href="index.html#marque">La marque</a></li><li><a href="index.html#empire">L’empire commercial</a></li><li><a href="index.html#philosophie">La philosophie</a></li><li><a href="index.html#controle">Le contrôle auriculaire</a></li><li><a href="index.html#scandales">La face cachée</a></li><li><a href="tshirts.html">T-shirts</a></li><li><a href="souvenirs.html" aria-current="page">Souvenirs</a></li></ul></nav>
+</div></div>
+<main id="contenu">
+
+<section class="sec" id="boutique" aria-labelledby="t-boutique"><div class="wrap">
+<h1 class="tee-sr">Boutique souvenirs Philoreilles</h1>
+<header class="head"><h2 id="t-boutique">La boutique souvenirs Philoreilles</h2><p class="lede">Un petit objet, une grande conviction.</p></header>
+
+<p class="tee-topline"><a class="tee-cartlink" href="#panier" data-cart-link>Voir le panier</a></p>
+
+<form id="souv-form" novalidate>
+
+<fieldset class="tee-field tee-field--lead">
+<legend>Que souhaitez-vous emporter ?</legend>
+<div class="tee-cats">
+<div class="tee-opt"><input class="tee-sr" type="radio" name="categorie" id="k-carte" value="carte" checked><label class="tee-model" for="k-carte"><img src="images/carte1.jpg" alt="" loading="lazy" decoding="async"><span><b>Cartes postales</b><small>Cinq cartes à 3,99 € pièce</small></span></label></div>
+<div class="tee-opt"><input class="tee-sr" type="radio" name="categorie" id="k-portecle" value="portecle"><label class="tee-model" for="k-portecle"><img src="images/portecle1.jpg" alt="" loading="lazy" decoding="async"><span><b>Porte-clés</b><small>Trois modèles à 7,99 € pièce</small></span></label></div>
+</div>
+</fieldset>
+
+<div class="shop" id="souv-shop" data-images="images/">
+
+<div class="shop__gallery">
+<figure class="tee-stage" id="stage">
+<img id="stage-img" src="images/carte1.jpg" alt="Carte postale « Salutations auriculaires », photographiée de biais" decoding="async">
+<p class="tee-fallback" id="stage-fallback">Le visuel de ce souvenir est momentanément indisponible. Votre sélection reste valable.</p>
+</figure>
+</div>
+
+<div class="shop__panel">
+<h3 class="tee-title" id="souv-title">Salutations auriculaires</h3>
+<p class="tee-now"><strong id="souv-price">3,99 €</strong> <span id="souv-note">la carte postale, au même prix pour toutes les oreilles</span></p>
+<p class="tee-desc" id="souv-desc">Pour dire bonjour à quelqu’un dont vous espérez la meilleure écoute.</p>
+
+<fieldset class="tee-field">
+<legend id="souv-legend">Choisir une carte postale</legend>
+<div class="tee-prods" id="souv-list"></div>
+</fieldset>
+
+<div class="tee-actions"><button class="btn btn--p" type="submit">Ajouter au panier</button></div>
+<p class="tee-status" id="shop-status" role="status" aria-live="polite"></p>
+<p class="tee-sr" id="souv-live" role="status" aria-live="polite"></p>
+<noscript><p class="tee-notice">Le choix des souvenirs et le panier ont besoin de JavaScript pour fonctionner. Le reste du site, lui, continue d’écouter.</p></noscript>
+</div>
+</div>
+
+</form>
+</div></section>
+
+<section class="sec sec--gris" id="panier" aria-labelledby="t-panier"><div class="wrap">
+<header class="head"><h2 id="t-panier" tabindex="-1">Votre panier</h2><p class="lede">Chaque souvenir compte, le sous-total aussi.</p></header>
+
+<p class="tee-empty" id="cart-empty">Votre panier est vide. Un souvenir officiel y trouverait volontiers sa place : choisissez-en un ci-dessus.</p>
+
+<div class="tee-cartbox" id="cart-content" hidden>
+<ul class="tee-cart" id="cart-list"></ul>
+<div class="tee-summary">
+<p class="tee-sub"><span>Sous-total <small id="cart-count"></small></span><strong id="cart-subtotal">0,00 €</strong></p>
+<button type="button" class="tee-linkbtn" id="cart-clear">Vider le panier</button>
+</div>
+</div>
+
+<p class="tee-status" id="cart-status" role="status" aria-live="polite"></p>
+<p class="tee-notice" id="storage-note" hidden>Votre navigateur bloque le stockage local : le panier sera perdu si vous quittez cette page.</p>
+<p class="tee-notice">Boutique de démonstration : aucun paiement n’est disponible, aucune commande n’est enregistrée et aucune livraison n’est prévue. Le panier reste uniquement dans votre navigateur.</p>
+</div></section>
+
+</main>
+<footer class="foot"><div class="foot__in">
+<img src="images/drapeau_2.jpg" alt="Drapeau officiel du mouvement des Philoreilles" loading="lazy">
+<div><b>PHILOREILLES</b><br>M. Phili Philipi, candidat du mouvement des Philoreilles
+<ul><li><a href="index.html#candidat">Le candidat</a></li><li><a href="index.html#societe">La nouvelle société</a></li><li><a href="index.html#marque">La marque</a></li><li><a href="index.html#empire">L’empire commercial</a></li><li><a href="index.html#philosophie">La philosophie</a></li><li><a href="index.html#controle">Le contrôle auriculaire</a></li><li><a href="index.html#scandales">La face cachée</a></li><li><a href="tshirts.html">T-shirts</a></li><li><a href="souvenirs.html">Souvenirs</a></li></ul></div>
+<p class="note">Site fictif et satirique : le mouvement des Philoreilles, son candidat, ses produits et son programme sont imaginaires. Aucune donnée n’est envoyée ni collectée : le panier est conservé uniquement dans votre navigateur.</p>
+</div></footer>
+<script src="script.js" defer></script>
+<script src="panier.js" defer></script>
+<script src="souvenirs.js" defer></script>
+</body>
+</html>
