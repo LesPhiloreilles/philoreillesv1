@@ -171,7 +171,7 @@ button.btn { font-family: inherit; }
 
 /* ---------- Panier ---------- */
 
-#t-panier:focus { outline: none; }
+#panier:focus, #t-panier:focus { outline: none; }
 #t-panier:focus-visible { outline: 3px solid var(--tee-ink); outline-offset: 4px; }
 
 .tee-empty { margin: 0; max-width: 40rem; }

@@ -370,14 +370,6 @@
     }
   }
 
-  // Tout lien vers #panier (menu, « Voir le panier », message de confirmation) place le focus sur le titre du panier.
-  // Le focus est posé après la navigation vers l’ancre : celle-ci le réinitialiserait sinon.
-  document.addEventListener('click', function (ev) {
-    var a = ev.target.closest ? ev.target.closest('a[href="#panier"]') : null;
-    if (!a || !cartTitle) return;
-    window.setTimeout(function () { cartTitle.focus({ preventScroll: true }); }, 0);
-  });
-
   // Mise à jour quand un autre onglet modifie le panier, ou au retour par l’historique.
   window.addEventListener('storage', function (e) {
     if (e.key !== null && e.key !== STORAGE_KEY) return;
